@@ -1,0 +1,27 @@
+spring:
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      properties:
+        spring.json.trusted.packages: "io.github.ashisht.models"
+  cloud:
+    stream:
+      bindings:
+        personProcessor-in-0:
+          destination: person
+        personProcessor-out-0:
+          destination: married-person
+      kafka:
+        streams:
+          binder:
+            application-id: person-processor
+            brokers:
+              - localhost:9092
+#            configuration:
+#              default:
+#                key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#                value.serde: org.springframework.kafka.support.serializer.JsonSerde
