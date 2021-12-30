@@ -13,8 +13,8 @@ import org.springframework.kafka.config.TopicBuilder;
 public class TopicConfiguration {
 
     @Bean
-    NewTopic person(@Value("${topic-name}") String topicName) {
-        return TopicBuilder.name(topicName).partitions(3).replicas(1).build();
+    NewTopic person() {
+        return TopicBuilder.name("person").partitions(3).replicas(1).build();
     }
 
     @Bean
